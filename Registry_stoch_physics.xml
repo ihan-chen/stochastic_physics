@@ -10,11 +10,6 @@
                      units="-"
                      description="logical flag for stochastic physics SKEB"
                      possible_values="logical values"/>
-                 
-                <nml_option name="do_spppbl" type="logical" default_value="false" 
-                     units="-"
-                     description="logical flag for stochastic parameter perturbations in PBL schemes"
-                     possible_values="logical values"/>
 
                 <nml_option name="config_spptint" type="integer" default_value="0" 
                      units="seconds"
@@ -105,6 +100,10 @@
                      units="-"
                      description="true: read in pattern, falser : init from seed"
                      possible_values="Logical values"/>
-
+                 
+                <nml_option name="do_spppbl" type="integer" default_value="0" 
+                     units="-"
+                     description="logical flag for stochastic parameter perturbations in PBL schemes (false=0, true=1)"
+                     possible_values="0 1"/>
         </nml_record>
 
