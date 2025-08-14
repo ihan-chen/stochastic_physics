@@ -56,7 +56,7 @@ module stoch_nml_rec
       real (kind=RKIND), pointer :: config_sppt_hgt_top2
       logical, pointer :: config_do_sppt
       logical, pointer :: config_sppt_logit
-      logical, pointer :: config_sppt_sfclimit
+      logical, pointer :: config_sppt_sfclimit,config_pattern_hgt_tapering
       integer, pointer :: config_iseed_sppt1, config_iseed_sppt2, config_iseed_sppt3
       integer, pointer :: config_spptint
 
@@ -80,6 +80,7 @@ module stoch_nml_rec
       sppt_hgt_top2 = 27000.0
 ! reduce amplitude of sppt near surface (lowest 2 levels)
       sppt_sfclimit = .false.
+      pattern_hgt_tapering=.false.
       pbl_taper = (/0.0,0.5,1.0,1.0,1.0,1.0,1.0/)
 
       sppt_logit        = .false. ! logit transform for sppt to bounded interval [-1,+1]
@@ -100,6 +101,7 @@ module stoch_nml_rec
       call mpas_pool_get_config(configPool, 'config_sppt_lscale_3', config_sppt_lscale_3)
       call mpas_pool_get_config(configPool, 'config_sppt_logit', config_sppt_logit)
       call mpas_pool_get_config(configPool, 'config_sppt_sfclimit', config_sppt_sfclimit)
+      call mpas_pool_get_config(configPool, 'config_pattern_hgt_tapering', config_pattern_hgt_tapering)
       call mpas_pool_get_config(configPool, 'config_iseed_sppt1', config_iseed_sppt1)
       call mpas_pool_get_config(configPool, 'config_iseed_sppt2', config_iseed_sppt2)
       call mpas_pool_get_config(configPool, 'config_iseed_sppt3', config_iseed_sppt3)
@@ -125,6 +127,7 @@ module stoch_nml_rec
 
       sppt_logit = config_sppt_logit
       sppt_sfclimit = config_sppt_sfclimit
+      pattern_hgt_tapering= config_pattern_hgt_tapering
       iseed_sppt(1) = config_iseed_sppt1
       iseed_sppt(2) = config_iseed_sppt2
       iseed_sppt(3) = config_iseed_sppt3

@@ -111,13 +111,18 @@ if (is_rootpe()) print*, 'after broadcast k_top:', k_top
 if (do_sppt) then
    allocate(vfact_sppt(levs))
    do k=1,levs
-      if (k .lt. k_top(1)) then
+     if (pattern_hgt_tapering) then
+       if (k .lt. k_top(1)) then
           vfact_sppt(k) = 1.0
-      elseif (k .gt. k_top(2)) then
+       elseif (k .gt. k_top(2)) then
           vfact_sppt(k) = 0.0
-      elseif (k .ge. k_top(1) .and. k .le. k_top(2)) then
+       elseif (k .ge. k_top(1) .and. k .le. k_top(2)) then
          vfact_sppt(k) = 1.0 - (real(k)-real(k_top(1)))/(real(k_top(2)) - real(k_top(1)))
-      endif
+       endif
+     else
+      if (is_rootpe()) print*, 'pattern_hgt_tapering:', pattern_hgt_tapering
+      vfact_sppt(k) = 1.0
+     end if
    enddo
 
 !if (is_rootpe()) print*,'after vfact_sppt(k) computation:', vfact_sppt
