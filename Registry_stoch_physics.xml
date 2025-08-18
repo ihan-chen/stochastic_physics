@@ -115,5 +115,20 @@
                      units="-"
                      description="logical flag for stochastic parameter perturbations in PBL schemes (false=0, true=1)"
                      possible_values="0 1"/>
+
+                <nml_option name="do_sppmp" type="integer" default_value="0" 
+                     units="-"
+                     description="logical flag for stochastic parameter perturbations in microphysics schemes (false=0)"
+                     possible_values="Positive values"/>
+
+                <nml_option name="config_sppmp_gridpt_stddev" type="real" default_value="0.75" 
+                     units="-"
+                     description="stochastic physics tendency amplitude for sppmp"
+                     possible_values="Positive values, 0.1 - 1.0"/>
+
+                <nml_option name="config_sppmp_stddev_cutoff" type="real" default_value="2.0" 
+                     units="-"
+                     description="cutoff tails of pdf above this threshold standard deviation"
+                     possible_values="Positive values, 0.1 - 1.0"/>
         </nml_record>
 
